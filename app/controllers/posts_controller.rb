@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   def index
-		@posts=Post.all
+		@posts=Post.reverse.all
   end
 
   def show
+		@post=Post.find(params[:id])
   end
 
   def show_category
