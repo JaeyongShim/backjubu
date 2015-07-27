@@ -32,11 +32,12 @@ class PostsController < ApplicationController
   end
 
   def create
-		if	@post=Post.create(params.require(:post).permit(:title,:content,:category))
+		@post=Post.new(params.require(:post).permit(:title,:content,:category))
+		if @post.save
 			flash[:alert]="글이 작성되었습니다"
 			redirect_to(@post)
 		else
-			flash[:alert]= post.errors.values.flatten.join(' ')
+			flash[:alert]=@post.errors.values.flatten.join(' ')
 			redirect_to :back
 		end
   end
