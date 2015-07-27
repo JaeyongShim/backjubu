@@ -1,0 +1,9 @@
+<p>
+	<strong>작성자:</strong>
+	<%= comment.user.username %>
+
+	<strong>Comment:</strong>
+	<%= comment.content%>
+
+	<%= link_to '삭제하기', comment_path(comment), method: :delete, data: { confirm:"삭제할까요?"} %>
+</p>

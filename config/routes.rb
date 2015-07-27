@@ -1,7 +1,18 @@
 Backjubu::Application.routes.draw do
-	resources :posts
+  get "comments/index"
+  get "comments/create"
+  get "comments/new"
+  get "comments/edit"
+  get "comments/show"
+  get "comments/update"
+  get "comments/destroy"
+	resources :posts do
+		resources :comments, shallow: true
+	end
+	
 	root 'posts#index'
 	get "/:category" => 'posts#show_category'
+	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

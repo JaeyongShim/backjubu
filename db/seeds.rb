@@ -12,3 +12,7 @@ categories.each do |category|
 		p=Post.create(title:"#{category}중 #{i} 이름",content:"#{category}집#{i} 설명",category:category)
 	end
 end
+
+0.upto(3) do |j|
+	u=User.create(username:"#{j}",password:"#{j}"*3)
+end

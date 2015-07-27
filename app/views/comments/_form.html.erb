@@ -1,0 +1,13 @@
+<%= form_for([@post,@post.comments.build]) do |f| %>
+<p>
+	<%= f.label :작성자 %><br>
+	<%= f.text_field :user_id %>
+</p>
+<p>
+	<%= f.label :내용 %><br>
+	<%= f.text_area :content %>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>
