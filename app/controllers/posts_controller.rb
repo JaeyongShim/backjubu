@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-		@posts=Post.all.reverse
+		@posts=Post.all
   end
 
   def show
@@ -22,9 +22,7 @@ class PostsController < ApplicationController
   end
 
   def new
-  end
-
-  def new_complete
+		@post=Post.new
   end
 
   def edit
@@ -34,6 +32,13 @@ class PostsController < ApplicationController
   end
 
   def create
+		if	@post=Post.create(params.require(:post).permit(:title,:content,:category))
+			flash[:alert]="글이 작성되었습니다"
+			redirect_to(@post)
+		else
+			flash[:alert]= post.errors.values.flatten.join(' ')
+			redirect_to :back
+		end
   end
 
   def update

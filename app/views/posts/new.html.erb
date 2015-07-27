@@ -1,2 +1,15 @@
-<h1>Post#new</h1>
-<p>Find me in app/views/post/new.html.erb</p>
+<p><%= flash[:alert] %></p>
+<h2>요리 추가하기</h2>
+
+<%= form_for @post do |f| %>
+	<%= f.label :category %>:
+	<%= f.select(:category, [['한식','한식'],['외국음식','외국음식'],['간식','간식'],['술','술']]) %>
+	<br>
+ 	<%= f.label :title %>:
+	<%= f.text_field :title %><br />
+
+	<%= f.label :content %>:
+	<%= f.text_area :content %><br />
+
+	<%=f.submit %>
+<% end %>
