@@ -1,5 +1,5 @@
 Backjubu::Application.routes.draw do
-	resources :post
+	resources :posts
 	root 'posts#index'
 	get "/:category" => 'posts#show_category'
   # The priority is based upon order of creation: first created -> highest priority.
