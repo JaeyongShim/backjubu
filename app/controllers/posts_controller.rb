@@ -7,6 +7,17 @@ class PostsController < ApplicationController
   end
 
   def show_category
+		case params[:category]
+		when "korean"
+			@category="한식"
+		when "liquid"
+			@category="술"
+		when "snack"
+			@category="간식"
+		else
+			@category="외국음식"
+		end
+		@posts=Post.where(category:@category)
   end
 
   def new
