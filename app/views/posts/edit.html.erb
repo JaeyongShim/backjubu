@@ -1,2 +1,6 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<p><%= flash[:alert] %></p>
+<h2>요리  수정하기</h2>
+
+<%= render :partial =>'posts/form' %>
+<p>
+<%= link_to '돌아가기', @post %></p>

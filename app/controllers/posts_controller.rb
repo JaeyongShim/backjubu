@@ -26,13 +26,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-  end
-
-  def edit_complete
+		@post=Post.find(params[:id])
   end
 
   def create
-		@post=Post.new(params.require(:post).permit(:title,:content,:category))
+		@post=Post.new(post_params)
 		if @post.save
 			flash[:alert]="글이 작성되었습니다"
 			redirect_to(@post)
@@ -43,8 +41,21 @@ class PostsController < ApplicationController
   end
 
   def update
+		@post=Post.find(params[:id])
+		if  @post.update(post_params)
+			flash[:alert]="수정되었습니다."
+			redirect_to @post
+		else
+			flash[:alert]=@post.errors.values.flatten.join(' ')
+			redirect_to :back
+		end
   end
 
   def destroy
   end
+
+	private
+		def post_params
+			params.require(:post).permit(:title,:content,:category)
+		end
 end
