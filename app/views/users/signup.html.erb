@@ -1,0 +1,10 @@
+<p><%= flash[:alert] %></p>
+<h2>회원 가입하기</h2>
+
+<%= form_for @user, url:{action: 'signup_complete'} do |f| %>
+	<p>아이디: <%= f.text_field :username %></p>
+	<p>비밀번호: <%= f.password_field :password %></p>
+	<p>비밀번호확인: <%= f.password_field :retype_password %></p>
+ 	<p><%= f.submit %>
+<% end %>	
+

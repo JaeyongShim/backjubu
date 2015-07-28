@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
 		@comment=Comment.find(params[:id])
 		@post=@comment.post
 		@comment.destroy
+		flash[:alert]="댓글이 삭제되었습니다."
 		redirect_to post_path(@post)
   end
 	private

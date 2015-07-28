@@ -1,4 +1,10 @@
 Backjubu::Application.routes.draw do
+  get "users/signup"
+  post "users/signup_complete"
+
+  get "users/login"
+  get "users/login_complete"
+  get "users/logout_complete"
   get "comments/index"
   get "comments/create"
   get "comments/new"
