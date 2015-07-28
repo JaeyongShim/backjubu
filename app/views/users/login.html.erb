@@ -1,2 +1,8 @@
-<h1>Users#login</h1>
-<p>Find me in app/views/users/login.html.erb</p>
+<p><%= flash[:alert] %> </p>
+<h2>로그인하기</h2>
+
+<%= form_for @user, url:{action:'login_complete'} do |f| %>
+<p> 아이디 : <%= f.text_field :username %></p>
+<p> 비밀번호 : <%= f.text_field :password %></p>
+<p> <%= f.submit %>
+<% end %>
