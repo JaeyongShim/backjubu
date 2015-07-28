@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 			flash[:alert]="댓글이 달렸습니다."
 			redirect_to post_path(@post)
 		else 
-			flash[:alert]="내용을 써주세요"
+			flash[:alert]=@comment.errors.values.flatten.join(' ')
 			redirect_to post_path(@post)
 		end
   end
@@ -28,10 +28,15 @@ class CommentsController < ApplicationController
   def edit
   end
 
-  def show
-  end
-
   def update
   end
 
+	def login_check
+		@current_id=nil
+		if !session[:user_id].nil?
+			@current_id=session[:user_id]
+		else
+			redirect to '/users/login'
+		end
+	end
 end
