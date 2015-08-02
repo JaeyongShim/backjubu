@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150724075044) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+
   create_table "posts", force: true do |t|
     t.string   "category"
     t.string   "title"

@@ -3,10 +3,14 @@ class PostsController < ApplicationController
 	skip_before_action :login_check, :only => [:index,:show,:show_category]
   def index
 		@posts=Post.all
+		@current_user=User.find(session[:user_id].to_int)
   end
 
   def show
 		@post=Post.find(params[:id])
+		@comments=@post.comments
+		@current_user=User.find(session[:user_id].to_int)
+	
   end
 
   def show_category
