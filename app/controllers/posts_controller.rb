@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
+	http_basic_authenticate_with name: "admin", password: "1131", only: [:destroy,:edit]
 	before_action :login_check
-	skip_before_action :login_check, :only => [:index,:show,:show_category]
+	skip_before_action :login_check, :only => [:index,:show,:show_category,:destroy,:edit]
   def index
 		@posts=Post.all
-		@current_user=User.find(session[:user_id].to_int)
   end
 
   def show
 		@post=Post.find(params[:id])
 		@comments=@post.comments
-		@current_user=User.find(session[:user_id].to_int)
+		@current_user=User.where(id: session[:user_id])[0]
 	
   end
 

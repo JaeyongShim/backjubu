@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+	before_action :login_check, :only => [:create, :destroy]
   def create
 		@post=Post.find(params[:post_id])
 		@comment=@post.comments.new(comment_params)
@@ -16,9 +16,14 @@ class CommentsController < ApplicationController
   def destroy
 		@comment=Comment.find(params[:id])
 		@post=@comment.post
-		@comment.destroy
-		flash[:alert]="댓글이 삭제되었습니다."
-		redirect_to post_path(@post)
+		if session[:user_id]==@comment.user_id
+			@comment.destroy
+			flash[:alert]="댓글이 삭제되었습니다."
+			redirect_to post_path(@post)
+		else 
+			flash[:alert]="권한이 없습니다"
+			redirect_to :back
+		end
   end
 	private
 		def comment_params
@@ -36,7 +41,7 @@ class CommentsController < ApplicationController
 		if !session[:user_id].nil?
 			@current_id=session[:user_id]
 		else
-			redirect to '/users/login'
+			redirect_to '/users/login'
 		end
 	end
 end

@@ -1,5 +1,7 @@
 <%= form_for([@post,@post.comments.build]) do |f| %>
+	<% if !@current_user.nil? %> 
 	<%= f.hidden_field :user_id,value:@current_user.id %>
+	<% end %>
 	<%= f.text_area :content %>
 	<%= f.submit %>
 <% end %>
