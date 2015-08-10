@@ -1,7 +1,8 @@
 <% @posts.reverse.each do |post| %>
-<div style="border: 1px solid #ffffff">
-<p><img src="<%= post.image_url(:thumb) %>"></p>
-<a href="/posts/<%=post.id%>"><h4><%= post.title %>  <span><% if !post.rating.nil? %>[<%=post.rating%>]<%end%></span></h4></a>
-<p style="color: #ff0000"><%= post.category %></p>
+	<div class="col-md-4">
+		<a href="/posts/<%=post.id%>"><img class="img-responsive" src="<%=post.image_url(:thumb) %>"></a>
+		<h3><a href="/posts/<%=post.id%>"><%=post.title %>
+<% if !post.rating.nil? %><span class="badge"><%=post.rating%></span><% end %></a></h3>
+<p><span class="label label-warning"><%= post.category %></span></p>
 </div>
 <% end %>
