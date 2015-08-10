@@ -1,6 +1,32 @@
-<h4><a href="/">백주부 모아보기</a> || <a href="/korean">한식</a> | <a href="/non_korean">외국음식</a> | <a href="/snack">간식</a> | <a href="/liquid">술</a> || <a href="/posts/new">글쓰기</a> || 
-<% if session[:user_id].nil? %>
- <a href="/users/login">로그인</a> | <a href="/users/signup">회원가입</a></h4>
-<% else %>
-	<a href="/users/logout_complete">로그아웃</a></h4>
-<% end %>
+<div class="container">
+	<h1 id="backjubu-title"><a id="backjubu-title-link" href="/">백주부 모아보기</a></h1>
+</div>
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#target">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="target">
+			<ul class="nav navbar-nav">
+				<li><a href="/">전체보기</a></li>
+				<li><a href="/korean">한식</a></li>
+				<li><a href="/western">양식</a></li>
+				<li><a href="/snack">간식</a></li>
+				<li><a href="/liquid">술</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">		
+			<% if session[:user_id].nil? %>
+				<li><a href="/users/login">로그인</a></li> 
+				<li><a href="/users/signup">회원가입</a></li>
+			<% else %>
+				<li><a href="/users/logout_complete">로그아웃</a></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+</nav>
