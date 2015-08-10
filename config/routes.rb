@@ -5,20 +5,15 @@ Backjubu::Application.routes.draw do
   get "users/login"
   post "users/login_complete"
   get "users/logout_complete"
-  get "comments/index"
-  get "comments/create"
-  get "comments/new"
-  get "comments/edit"
-  get "comments/show"
-  get "comments/update"
-  get "comments/destroy"
 	resources :posts do
 		resources :comments, shallow: true
+		resources :rates, shallow: true
 	end
 	
 	root 'posts#index'
+	get "/rating" => 'posts#show_rating'	
+	get "/rating/:category"=> 'posts#show_category_rating'
 	get "/:category" => 'posts#show_category'
-	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

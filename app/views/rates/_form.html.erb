@@ -1,0 +1,16 @@
+<% if @current_rate.nil? %>
+	<%= form_for([@post,@post.rates.build]) do |f| %>
+
+	<%= f.hidden_field :user_id,value:@current_user.try(:id) %>
+
+	<%= f.select(:rating, [['1',1],['2',2],['3',3],['4',4],['5',5]]) %>
+	<%= f.submit %>
+<% end %>
+<% else %>
+	<%= form_for @current_rate do |f| %>
+	<%= f.hidden_field :user_id,value:@current_user.try(:id) %>
+
+	<%= f.select(:rating, [['1',1],['2',2],['3',3],['4',4],['5',5]]) %>
+	<%= f.submit %>
+<% end %>
+<% end %>

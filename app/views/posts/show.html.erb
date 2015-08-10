@@ -5,6 +5,7 @@
 	<p><img src="<%= @post.image_url(:medium) %>"></p>
 	<h4>제목: <%= @post.title %></h4>
 	<p style="color: #ff0000">분류: <%= @post.category %></p>
+	<span>평점: <%= @rate_average %> (<%= @rate.count %>명 참여) </span><span><%= render 'rates/form' %></span>
 	<p>내용: <%= @post.content %></p>
 	<h2>Comments</h2>
 		<%= render @post.comments %>

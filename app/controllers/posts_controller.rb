@@ -10,6 +10,9 @@ class PostsController < ApplicationController
 		@post=Post.find(params[:id])
 		@comments=@post.comments
 		@current_user=User.where(id: session[:user_id])[0]
+		@rate=@post.rates
+		rate_average
+		@current_rate=@post.rates.where(user_id:@current_user.try(:id)).first
 	
   end
 
@@ -27,6 +30,15 @@ class PostsController < ApplicationController
 		@posts=Post.where(category:@category)
   end
 
+	def show_rating
+		@posts=Post.order(:rating)
+		render action: 'index'
+	end
+	def show_category_rating
+		show_category
+		@posts=@posts.order(:rating)
+		render action: 'show_category'
+	end
   def new
 		@post=Post.new
   end
@@ -68,6 +80,14 @@ class PostsController < ApplicationController
 		def post_params
 			params.require(:post).permit(:title,:content,:category,:image)
 		end
+ 	
+	def rate_average
+		if @post.try(:rating)
+			@rate_average=@post.rating
+		else 
+			@rate_average="평가가 없습니다"
+		end
+	end
 	
 	def login_check
 		@current_user =nil
